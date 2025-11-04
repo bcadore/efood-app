@@ -2,7 +2,7 @@ import logo from "../../assets/logo.png";
 
 import { BackgroundImage, LogoImage, Phrase } from "./styles";
 
-const Header = () => (
+const Hero = () => (
   <BackgroundImage>
     <div className="container">
       <LogoImage src={logo} alt="Logo do EFOOD." />
@@ -11,4 +11,4 @@ const Header = () => (
   </BackgroundImage>
 );
 
-export default Header;
+export default Hero;
