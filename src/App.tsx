@@ -1,16 +1,15 @@
+import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from ".";
+import Rotas from "./routes";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
-import RestauranteList from "./components/RestaurantList";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
-      <Header />
-      <RestauranteList />
+      <Rotas />
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
 
