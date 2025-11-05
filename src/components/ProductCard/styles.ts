@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { colors } from "../..";
 
 export const CardContainer = styled.div`
-  background-color: #ffffff;
-  border: 1px solid ${colors.primary};
+  background-color: ${colors.primary};
+  color: ${colors.secondary};
+  border: 1px solid ${colors.secondary};
   display: flex;
   flex-direction: column;
   max-width: 320px;
@@ -12,6 +13,7 @@ export const CardContainer = styled.div`
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
+  padding: 8px;
 `;
 
 export const CardImage = styled.img`
@@ -29,28 +31,28 @@ export const Content = styled.div`
 
 export const Title = styled.h3`
   font-size: 16px;
-  font-weight: bold;
-  color: ${colors.primary};
+  font-weight: 900;
+  color: ${colors.secondary};
   margin-bottom: 8px;
+  line-height: 100%;
 `;
 
 export const Description = styled.p`
   font-size: 14px;
+  font-weight: 400;
+  color: ${colors.secondary};
   line-height: 22px;
   margin-bottom: 8px;
-  color: ${colors.primary};
-  flex-grow: 1;
 `;
 
 export const Button = styled.button`
-  background-color: ${colors.primary};
-  color: ${colors.secondary};
+  background-color: ${colors.secondary};
+  color: ${colors.primary};
   border: none;
   padding: 4px 6px;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  margin-bottom: 8px;
 `;
 
 export const PriceInfo = styled.div`
@@ -69,4 +71,3 @@ export const Porcao = styled.span`
   font-size: 14px;
   color: ${colors.primary};
 `;
-

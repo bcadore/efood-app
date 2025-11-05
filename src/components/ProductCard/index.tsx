@@ -13,8 +13,6 @@ const ProductCard = ({
   title,
   description,
   image,
-  price,
-  porcao,
 }: ProductCardProps) => {
   return (
     <S.CardContainer>
@@ -26,10 +24,6 @@ const ProductCard = ({
         <S.Title>{title}</S.Title>
         <S.Description>{description}</S.Description>
         <S.Button>Adicionar ao carrinho</S.Button>
-        <S.PriceInfo>
-          <S.Price>R$ {price.toFixed(2)}</S.Price>
-          <S.Porcao>{porcao}</S.Porcao>
-        </S.PriceInfo>
       </S.Content>
     </S.CardContainer>
   );
