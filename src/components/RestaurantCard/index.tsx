@@ -1,6 +1,8 @@
-import * as S from './styles';
+import { useNavigate } from "react-router-dom";
+import * as S from "./styles";
 
 type RestauranteCardProps = {
+  id: number;
   title: string;
   rating: number;
   description: string;
@@ -8,12 +10,25 @@ type RestauranteCardProps = {
   tags: string[];
 };
 
-const RestauranteCard = ({ title, rating, description, image, tags }: RestauranteCardProps) => {
+const RestauranteCard = ({
+  id,
+  title,
+  rating,
+  description,
+  image,
+  tags,
+}: RestauranteCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/perfil/${id}`);
+  };
+
   return (
     <S.CardContainer>
       <S.ImageContainer>
         <S.CardImage src={image} alt={title} />
-        
+
         <S.TagsContainer>
           {tags.map((tag) => (
             <S.Tag key={tag}>{tag}</S.Tag>
@@ -30,7 +45,7 @@ const RestauranteCard = ({ title, rating, description, image, tags }: Restaurant
           </S.Rating>
         </S.Header>
         <S.Description>{description}</S.Description>
-        <S.Button>Saiba mais</S.Button>
+        <S.Button onClick={handleClick}>Saiba mais</S.Button>
       </S.Content>
     </S.CardContainer>
   );
