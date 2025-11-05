@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Banner from "../../components/Banner";
+import ProductList from "../../components/ProductList";
 import { getRestauranteById } from "../../data/restaurantes";
 
 const Perfil = () => {
@@ -34,6 +35,7 @@ const Perfil = () => {
         title={restaurante.title}
         image={restaurante.image}
       />
+      <ProductList restauranteId={restaurante.id} />
     </>
   );
 };
