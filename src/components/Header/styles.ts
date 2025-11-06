@@ -26,6 +26,12 @@ export const LogoImage = styled.img`
   width: 125px;
   height: 57.5px;
   object-fit: cover;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const Phrase = styled.p`
