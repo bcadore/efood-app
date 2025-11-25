@@ -8,8 +8,8 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: #000;
-  opacity: 0.7; // Escurece o fundo
-  z-index: 1; // Nível baixo
+  opacity: 0.7;
+  z-index: 1;
 `
 
 export const CartContainer = styled.div`
@@ -20,15 +20,49 @@ export const CartContainer = styled.div`
   max-width: 360px;
   height: 100%;
   background-color: ${colors.primary};
-  z-index: 2; // Nível alto (acima do Overlay)
+  z-index: 2;
   padding: 32px 8px;
   display: flex;
   flex-direction: column;
+
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${colors.secondary};
+    border-radius: 5px;
+  }
 
   .items-container {
     flex: 1;
     overflow-y: auto;
     margin-bottom: 24px;
+  }
+  
+  h2 {
+    color: ${colors.secondary};
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  
+  p {
+    color: ${colors.secondary};
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 24px;
+  }
+  
+  .empty-text {
+    color: ${colors.secondary};
+    text-align: center;
+    margin-top: 24px;
   }
 `
 
@@ -99,4 +133,41 @@ export const Button = styled.button`
   border: none;
   padding: 12px;
   cursor: pointer;
+  margin-bottom: 8px;
+`
+
+export const InputGroup = styled.div`
+  margin-bottom: 8px;
+  
+  label {
+    display: block;
+    color: ${colors.secondary};
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  input {
+    width: 100%;
+    background-color: ${colors.secondary};
+    border: 1px solid ${colors.secondary};
+    padding: 8px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #4B4B4B;
+    
+    &.error {
+      border: 2px solid red;
+    }
+  }
+`
+
+export const Row = styled.div`
+  display: flex;
+  gap: 34px;
+  
+  div {
+    width: 100%;
+  }
 `
