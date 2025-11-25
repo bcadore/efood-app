@@ -1,41 +1,68 @@
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
+
 import Header from "../../components/Header";
 import Banner from "../../components/Banner";
-import ProductList from "../../components/ProductList";
-import { getRestauranteById } from "../../data/restaurantes";
+import ProductList, { type Produto } from "../../components/ProductList";
+import Modal from "../../components/Modal";
+
+// Tipagem do restaurante vindo da API
+interface RestauranteAPI {
+  id: number;
+  titulo: string;
+  destacado: boolean;
+  tipo: string;
+  avaliacao: number;
+  descricao: string;
+  capa: string;
+  cardapio: Produto[];
+}
 
 const Perfil = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
 
-  const restauranteId = id ? parseInt(id, 10) : null;
-  const restaurante = restauranteId ? getRestauranteById(restauranteId) : null;
+  const [restaurante, setRestaurante] = useState<RestauranteAPI | null>(null);
+  const [modalAberta, setModalAberta] = useState(false);
+  const [produtoSelecionado, setProdutoSelecionado] = useState<Produto | null>(null);
+
+  useEffect(() => {
+    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
+      .then((res) => res.json())
+      .then((res: RestauranteAPI[]) => {
+        // Encontra o restaurante pelo ID da URL
+        const restauranteEncontrado = res.find((r) => r.id === Number(id));
+        setRestaurante(restauranteEncontrado || null);
+      });
+  }, [id]);
+
+  const abrirModal = (produto: Produto) => {
+    setProdutoSelecionado(produto);
+    setModalAberta(true);
+  };
 
   if (!restaurante) {
-    return (
-      <>
-        <Header />
-        <div style={{ padding: "20px", textAlign: "center" }}>
-          <p>Restaurante não encontrado</p>
-          <button onClick={() => navigate("/")}>Voltar para a home</button>
-        </div>
-      </>
-    );
+    return <h3>Carregando...</h3>;
   }
-
-  const categoria =
-    restaurante.tags.find((tag) => tag === "Japonesa" || tag === "Italiana") ||
-    restaurante.tags[restaurante.tags.length - 1];
 
   return (
     <>
       <Header />
       <Banner
-        category={categoria}
-        title={restaurante.title}
-        image={restaurante.image}
+        category={restaurante.tipo}
+        title={restaurante.titulo}
+        image={restaurante.capa}
       />
-      <ProductList restauranteId={restaurante.id} />
+      
+      <ProductList 
+        produtos={restaurante.cardapio} 
+        aoComprar={abrirModal} 
+      />
+
+      <Modal 
+        isOpen={modalAberta} 
+        onClose={() => setModalAberta(false)} 
+        produto={produtoSelecionado} 
+      />
     </>
   );
 };

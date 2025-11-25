@@ -1,26 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestauranteCard from "../RestaurantCard";
 import * as S from "./styles";
-import { DADOS_INICIAIS } from "../../data/restaurantes";
+
+
+type Restaurante = {
+  id: number;
+  titulo: string;
+  destacado: boolean;
+  tipo: string;
+  avaliacao: number;
+  descricao: string;
+  capa: string;
+};
 
 const RestauranteList = () => {
-  const [restaurantes] = useState(DADOS_INICIAIS);
+  const [restaurantes, setRestaurantes] = useState<Restaurante[]>([]);
+
+  useEffect(() => {
+    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
+      .then((res) => res.json())
+      .then((res) => {
+        setRestaurantes(res);
+      });
+  }, []);
 
   return (
     <S.Section>
-      <S.Grid>
-        {restaurantes.map((restaurante) => (
-          <RestauranteCard
-            key={restaurante.id}
-            id={restaurante.id}
-            title={restaurante.title}
-            rating={restaurante.rating}
-            description={restaurante.description}
-            image={restaurante.image}
-            tags={restaurante.tags}
-          />
-        ))}
-      </S.Grid>
+      <div className="container">
+        <S.Grid>
+          {restaurantes.map((restaurante) => (
+            <RestauranteCard
+              key={restaurante.id}
+              id={restaurante.id}
+              title={restaurante.titulo}
+              rating={restaurante.avaliacao}
+              description={restaurante.descricao}
+              image={restaurante.capa}
+              tags={[restaurante.tipo]}
+            />
+          ))}
+        </S.Grid>
+      </div>
     </S.Section>
   );
 };

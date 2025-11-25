@@ -1,30 +1,40 @@
-import { useState } from "react";
 import ProductCard from "../ProductCard";
 import * as S from "./styles";
-import { getProdutosByRestauranteId } from "../../data/produtos";
 
-type ProductListProps = {
-  restauranteId: number;
+// Tipagem baseada no que vem da API
+export type Produto = {
+  id: number;
+  nome: string;
+  descricao: string;
+  foto: string;
+  preco: number;
+  porcao: string;
 };
 
-const ProductList = ({ restauranteId }: ProductListProps) => {
-  const [produtos] = useState(getProdutosByRestauranteId(restauranteId));
+type ProductListProps = {
+  produtos: Produto[];
+  aoComprar: (produto: Produto) => void;
+};
 
+const ProductList = ({ produtos, aoComprar }: ProductListProps) => {
   return (
     <S.Section>
-      <S.Grid>
-        {produtos.map((produto) => (
-          <ProductCard
-            key={produto.id}
-            id={produto.id}
-            title={produto.title}
-            description={produto.description}
-            image={produto.image}
-            price={produto.price}
-            porcao={produto.porcao}
-          />
-        ))}
-      </S.Grid>
+      <div className="container">
+        <S.Grid>
+          {produtos.map((produto) => (
+            <ProductCard
+              key={produto.id}
+              id={produto.id}
+              title={produto.nome}        // API: nome -> Componente: title
+              description={produto.descricao}
+              image={produto.foto}        // API: foto -> Componente: image
+              price={produto.preco}
+              porcao={produto.porcao}
+              aoClicar={() => aoComprar(produto)}
+            />
+          ))}
+        </S.Grid>
+      </div>
     </S.Section>
   );
 };

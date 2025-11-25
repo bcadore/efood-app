@@ -7,13 +7,23 @@ type ProductCardProps = {
   image: string;
   price: number;
   porcao: string;
+  aoClicar: () => void;
 };
 
 const ProductCard = ({
   title,
   description,
   image,
+  aoClicar,
 }: ProductCardProps) => {
+
+  const getDescricao = (desc: string) => {
+      if (desc.length > 95) {
+          return desc.slice(0, 92) + '...'
+      }
+      return desc
+  }
+  
   return (
     <S.CardContainer>
       <S.ImageContainer>
@@ -22,8 +32,8 @@ const ProductCard = ({
 
       <S.Content>
         <S.Title>{title}</S.Title>
-        <S.Description>{description}</S.Description>
-        <S.Button>Adicionar ao carrinho</S.Button>
+        <S.Description>{getDescricao(description)}</S.Description>
+        <S.Button onClick={aoClicar}>Adicionar ao carrinho</S.Button>
       </S.Content>
     </S.CardContainer>
   );
