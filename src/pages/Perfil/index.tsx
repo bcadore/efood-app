@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Header from "../../components/Header";
 import Banner from "../../components/Banner";
@@ -29,7 +29,6 @@ const Perfil = () => {
     fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
       .then((res) => res.json())
       .then((res: RestauranteAPI[]) => {
-        // Encontra o restaurante pelo ID da URL
         const restauranteEncontrado = res.find((r) => r.id === Number(id));
         setRestaurante(restauranteEncontrado || null);
       });
