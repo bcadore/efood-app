@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../..";
+import { colors } from "../../index"; // Ajuste o caminho conforme a localização do seu arquivo de cores
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -22,7 +22,7 @@ export const ModalContent = styled.div`
   position: relative;
   display: flex;
   gap: 24px;
-  color: ${colors.secondary};
+  color: #fff;
   
   @media (max-width: 768px) {
     flex-direction: column;
@@ -60,7 +60,8 @@ export const ContentContainer = styled.div`
         line-height: 22px;
         margin-bottom: 16px;
     }
-`
+`;
+
 export const Button = styled.button`
   background-color: ${colors.secondary};
   color: ${colors.primary};
@@ -82,4 +83,3 @@ export const CloseButton = styled.img`
   height: 16px;
   filter: brightness(0) invert(1); 
 `;
-
