@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../'
+import { colors } from '../../' // Ajuste se necessário para '../styles' ou onde estiver seu tema
 
 export const Overlay = styled.div`
   position: fixed;
@@ -24,7 +24,6 @@ export const CartContainer = styled.div`
   padding: 32px 8px;
   display: flex;
   flex-direction: column;
-
   overflow-y: auto;
   
   &::-webkit-scrollbar {
@@ -134,6 +133,11 @@ export const Button = styled.button`
   padding: 12px;
   cursor: pointer;
   margin-bottom: 8px;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `
 
 export const InputGroup = styled.div`
@@ -160,6 +164,13 @@ export const InputGroup = styled.div`
     &.error {
       border: 2px solid red;
     }
+  }
+  
+  small {
+    color: ${colors.secondary};
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
   }
 `
 
