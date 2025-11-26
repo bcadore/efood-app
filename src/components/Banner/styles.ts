@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../..";
 
 type BackgroundImageProps = {
   $image: string;
@@ -44,7 +45,7 @@ export const Phrase = styled.p`
   font-weight: 100;
   font-size: 32px;
   line-height: 100%;
-  color: #fff;
+  color: ${colors.tertiary};
 `;
 
 export const Title = styled.h1`
@@ -53,5 +54,5 @@ export const Title = styled.h1`
   font-style: Black;
   font-size: 32px;
   line-height: 100%;
-  color: #fff;
+  color: ${colors.tertiary};
 `;

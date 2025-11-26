@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 import type { RootReducer } from '../../store' // Certifique-se que o caminho está correto
 
+import { colors } from '../../index'
 import {
   ModalOverlay,
   ModalContent,
@@ -87,7 +88,7 @@ const Modal = ({ isOpen, onClose, produto }: ModalProps) => {
             <Button onClick={adicionarEFechar} style={{ marginTop: 0 }}>
               Sim, adicionar
             </Button>
-            <Button onClick={() => setModalAvisoAberto(false)} style={{ marginTop: 0, backgroundColor: '#fff', border: '1px solid #FFEBD9' }}>
+            <Button onClick={() => setModalAvisoAberto(false)} style={{ marginTop: 0, backgroundColor: colors.tertiary, border: `1px solid ${colors.secondary}` }}>
               Não, cancelar
             </Button>
           </div>

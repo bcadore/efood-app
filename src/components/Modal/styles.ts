@@ -22,7 +22,7 @@ export const ModalContent = styled.div`
   position: relative;
   display: flex;
   gap: 24px;
-  color: #fff;
+  color: ${colors.tertiary};
   
   @media (max-width: 768px) {
     flex-direction: column;

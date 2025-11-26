@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { colors } from "../..";
 
 export const Section = styled.section`
   padding: 80px 0;
-  background-color: #fcf5f5;
+  background-color: ${colors.tertiary};
 `;
 
 export const Grid = styled.div`

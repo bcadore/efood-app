@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../..";
 
 export const CardContainer = styled.div`
-  background-color: #ffffff;
+  background-color: ${colors.tertiary};
   border: 1px solid ${colors.primary};
   display: flex;
   flex-direction: column;
