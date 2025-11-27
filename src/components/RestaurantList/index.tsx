@@ -1,28 +1,13 @@
-import { useEffect, useState } from "react";
+// Using hooks from RTK Query to fetch restaurantes
+import { useGetRestaurantesQuery } from '../../services/api'
 import RestauranteCard from "../RestaurantCard";
 import * as S from "./styles";
 
 
-type Restaurante = {
-  id: number;
-  titulo: string;
-  destacado: boolean;
-  tipo: string;
-  avaliacao: number;
-  descricao: string;
-  capa: string;
-};
+// Restaurante type comes from the API service types — using data returned by RTK-Query
 
 const RestauranteList = () => {
-  const [restaurantes, setRestaurantes] = useState<Restaurante[]>([]);
-
-  useEffect(() => {
-    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => {
-        setRestaurantes(res);
-      });
-  }, []);
+  const { data: restaurantes = [] } = useGetRestaurantesQuery()
 
   return (
     <S.Section>

@@ -3,10 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
 import type { RootReducer } from '../../store' // Certifique-se que o caminho está correto
 
-import { colors } from '../../index'
 import {
   ModalOverlay,
   ModalContent,
+  ModalAvisoContent,
+  ModalAvisoTitle,
+  ModalAvisoText,
+  ModalActions,
+  ActionButton,
+  OutlinedButton,
   CloseButton,
   ModalImage,
   ContentContainer,
@@ -72,27 +77,26 @@ const Modal = ({ isOpen, onClose, produto }: ModalProps) => {
   if (modalAvisoAberto) {
     return (
       <ModalOverlay onClick={fecharTudo}>
-        <ModalContent onClick={(e) => e.stopPropagation()} style={{ maxWidth: '480px', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: 'auto', padding: '40px' }}>
+        <ModalAvisoContent onClick={(e) => e.stopPropagation()}>
           <CloseButton
             src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png"
             alt="Fechar"
             onClick={fecharTudo}
           />
           
-          <h3 style={{ fontSize: '24px', marginBottom: '16px' }}>Atenção!</h3>
-          <p style={{ marginBottom: '24px', fontSize: '16px' }}>
+          <ModalAvisoTitle>Atenção!</ModalAvisoTitle>
+          <ModalAvisoText>
             Você já possui um prato desse tipo no carrinho. Deseja adicionar outro igual?
-          </p>
-
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <Button onClick={adicionarEFechar} style={{ marginTop: 0 }}>
+          </ModalAvisoText>
+          <ModalActions>
+            <ActionButton onClick={adicionarEFechar}>
               Sim, adicionar
-            </Button>
-            <Button onClick={() => setModalAvisoAberto(false)} style={{ marginTop: 0, backgroundColor: colors.tertiary, border: `1px solid ${colors.secondary}` }}>
+            </ActionButton>
+            <OutlinedButton onClick={() => setModalAvisoAberto(false)}>
               Não, cancelar
-            </Button>
-          </div>
-        </ModalContent>
+            </OutlinedButton>
+          </ModalActions>
+        </ModalAvisoContent>
       </ModalOverlay>
     )
   }

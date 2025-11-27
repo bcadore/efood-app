@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: ${colors.black};
   opacity: 0.7;
   z-index: 1;
 `
@@ -159,7 +159,7 @@ export const InputGroup = styled.div`
     height: 32px;
     font-weight: 700;
     font-size: 14px;
-    color: #4B4B4B;
+    color: ${colors.text};
     
     &.error {
       border: 2px solid red;

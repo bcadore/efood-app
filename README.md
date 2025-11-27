@@ -1,73 +1,68 @@
-# React + TypeScript + Vite
+# efood — delivery-front
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Front-end for the efood demo (React + TypeScript + Vite) used in the EBAC exercises.
 
-Currently, two official plugins are available:
+This repository contains a small SPA that reads restaurants and products from a remote API and allows a simple checkout flow.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- React + TypeScript + Vite
+- Redux Toolkit + RTK Query for API calls (single source of truth in `src/services/api.ts`)
+- Cart persisted in localStorage (so your basket survives page reloads)
+- Centralized color palette in `src/index.ts` (use `colors.primary`, `colors.secondary`, etc.)
+- Separation of concerns in components (Cart logic split into a hook, forms and UI components)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Environment
 
-## Expanding the ESLint configuration
+The app uses an environment variable to change the API base URL. Create a `.env` file in the project root (for development) and add:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_BASE=https://api-ebac.vercel.app/api/efood
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+If the variable is not set, the app will fall back to the above URL.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Local setup
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1) Install dependencies
+
+```powershell
+npm install
 ```
+
+2) Run the app in development mode (Vite)
+
+```powershell
+npm run dev
+# Open the address displayed by Vite (e.g. http://localhost:5173/)
+```
+
+3) Build for production
+
+```powershell
+npm run build
+```
+
+4) Preview the production build
+
+```powershell
+npm run preview
+```
+
+## What's in this branch
+
+This set of changes includes several safe, non-breaking improvements:
+
+- Environment-configurable API base URL (see `VITE_API_BASE`)
+- RTK Query types exported (for better type-safety across the app)
+- Centralized and expanded colors palette (`white`, `black`, `text`) and replacement of remaining literal color values
+- Modal inline styles moved to `styles.ts` (cleaner JSX)
+- Cart persistence using localStorage (`src/store/index.ts` saves the `cart` slice under `efood:cart`)
+
+## Suggestions / next steps
+
+- Add tests (unit + integration) to cover the checkout flow
+- Add e2e tests to validate UX on critical flows
+- Add a CI workflow to run build, lint and tests before merge
+
+If you want, I can open a dedicated branch/PR with these changes. ✅

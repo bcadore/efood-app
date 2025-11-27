@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-type Product = {
+export type Product = {
   id: number
   price: number
 }
 
-type PurchasePayload = {
+export type PurchasePayload = {
   products: Product[]
   delivery: {
     receiver: string
@@ -30,11 +30,11 @@ type PurchasePayload = {
   }
 }
 
-type CheckoutResponse = {
+export type CheckoutResponse = {
   orderId: string
 }
 
-type Restaurante = {
+export type Restaurante = {
   id: number
   titulo: string
   destacado: boolean
@@ -54,7 +54,7 @@ type Restaurante = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api-ebac.vercel.app/api/efood'
+    baseUrl: (import.meta as any).env?.VITE_API_BASE || 'https://api-ebac.vercel.app/api/efood'
   }),
   endpoints: (builder) => ({
     getRestaurantes: builder.query<Restaurante[], void>({
