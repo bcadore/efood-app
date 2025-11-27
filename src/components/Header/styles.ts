@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, screen } from "../..";
+import { colors, screen } from "../../theme";
 import fundo from "../../assets/fundo.png";
 
 export const BackgroundImage = styled.div`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, screen } from "../..";
+import { colors, screen } from "../../theme";
 
 type BackgroundImageProps = {
   $image: string;
