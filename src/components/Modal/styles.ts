@@ -7,7 +7,7 @@ export const ModalOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: ${colors.overlayDark};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,4 +82,38 @@ export const CloseButton = styled.img`
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1); 
+`;
+
+export const ModalAvisoContent = styled(ModalContent)`
+  max-width: 480px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: auto;
+  padding: 40px;
+`;
+
+export const ModalAvisoTitle = styled.h3`
+  font-size: 24px;
+  margin-bottom: 16px;
+`;
+
+export const ModalAvisoText = styled.p`
+  margin-bottom: 24px;
+  font-size: 16px;
+`;
+
+export const ModalActions = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+export const ActionButton = styled(Button)`
+  margin-top: 0;
+`;
+
+export const OutlinedButton = styled(ActionButton)`
+  background-color: ${colors.white};
+  border: 1px solid ${colors.secondary};
+  color: ${colors.primary};
 `;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useGetRestaurantesQuery } from '../../services/api'
 import { useParams } from "react-router-dom";
 
 import Header from "../../components/Header";
@@ -25,14 +26,13 @@ const Perfil = () => {
   const [modalAberta, setModalAberta] = useState(false);
   const [produtoSelecionado, setProdutoSelecionado] = useState<Produto | null>(null);
 
+  const { data: restaurantes } = useGetRestaurantesQuery()
+
   useEffect(() => {
-    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res: RestauranteAPI[]) => {
-        const restauranteEncontrado = res.find((r) => r.id === Number(id));
-        setRestaurante(restauranteEncontrado || null);
-      });
-  }, [id]);
+    if (!restaurantes) return
+    const restauranteEncontrado = restaurantes.find((r) => r.id === Number(id));
+    setRestaurante(restauranteEncontrado || null);
+  }, [id, restaurantes]);
 
   const abrirModal = (produto: Produto) => {
     setProdutoSelecionado(produto);
