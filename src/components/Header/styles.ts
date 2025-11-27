@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../..";
+import { colors, screen } from "../..";
 import fundo from "../../assets/fundo.png";
 
 export const BackgroundImage = styled.div`
@@ -19,6 +19,24 @@ export const BackgroundImage = styled.div`
     gap: 0px;
     align-items: center;
     justify-content: space-between;
+  }
+
+  @media (max-width: ${screen.desktop}) {
+    height: 220px;
+    .container {
+      padding: 32px;
+    }
+  }
+
+  @media (max-width: ${screen.tablet}) {
+    height: 160px;
+    .container {
+      padding: 20px;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+    }
   }
 `;
 

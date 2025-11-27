@@ -8,8 +8,10 @@ export const Section = styled.section`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 32px;
+  justify-items: center;
+  justify-content: center;
 
   max-width: 1024px;
   margin: 0 auto;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../..";
+import { colors, screen } from "../..";
 
 type BackgroundImageProps = {
   $image: string;
@@ -38,6 +38,21 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
     position: relative;
     z-index: 2;
     height: 100%;
+  }
+
+  @media (max-width: ${screen.desktop}) {
+    height: 240px;
+    .container { gap: 120px; padding: 20px }
+  }
+
+  @media (max-width: ${screen.tablet}) {
+    height: 200px;
+    .container { gap: 72px; padding: 16px }
+  }
+
+  @media (max-width: ${screen.mobile}) {
+    height: 160px;
+    .container { gap: 24px; padding: 12px; align-items: center }
   }
 `;
 
