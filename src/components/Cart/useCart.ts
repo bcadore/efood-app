@@ -4,6 +4,7 @@ import type { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
 import { usePurchaseMutation } from '../../services/api'
 import type { DeliveryValues, PaymentValues } from './types'
+import { buildPurchasePayload } from './helpers'
 
 export const useCart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -50,34 +51,7 @@ export const useCart = () => {
   const handlePaymentSubmit = (paymentValues: PaymentValues) => {
     if (!items || items.length === 0 || !deliveryData) return
 
-    const payload = {
-      products: items.map((item) => ({
-        id: item.id,
-        price: item.preco
-      })),
-      delivery: {
-        receiver: deliveryData.receiver,
-        address: {
-          description: deliveryData.address,
-          city: deliveryData.city,
-          zipCode: deliveryData.zipCode,
-          number: Number(deliveryData.number),
-          complement: deliveryData.complement
-        }
-      },
-      payment: {
-        card: {
-          name: paymentValues.cardName,
-          number: paymentValues.cardNumber,
-          code: Number(paymentValues.cardCode),
-          expires: {
-            month: Number(paymentValues.expiresMonth),
-            year: Number(paymentValues.expiresYear)
-          }
-        }
-      }
-    }
-
+    const payload = buildPurchasePayload(items, deliveryData, paymentValues)
     purchase(payload)
   }
 

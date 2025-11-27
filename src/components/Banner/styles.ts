@@ -22,7 +22,7 @@ export const BackgroundImage = styled.div<BackgroundImageProps>`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${colors.overlayMedium};
     z-index: 1;
   }
 
