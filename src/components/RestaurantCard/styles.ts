@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../..";
+import { colors } from "../../theme";
 
 export const CardContainer = styled.div`
   background-color: ${colors.tertiary};

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../' // Ajuste se necessário para '../styles' ou onde estiver seu tema
+import { colors } from '../../theme' // central theme tokens
 
 export const Overlay = styled.div`
   position: fixed;

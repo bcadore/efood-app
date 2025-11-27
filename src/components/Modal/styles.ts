@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../index"; // Ajuste o caminho conforme a localização do seu arquivo de cores
+import { colors } from "../../theme"; // Use centralized theme tokens
 
 export const ModalOverlay = styled.div`
   position: fixed;

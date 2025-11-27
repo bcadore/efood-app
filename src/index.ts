@@ -11,6 +11,12 @@ export const colors = {
   overlayMedium: 'rgba(0, 0, 0, 0.5)'
 };
 
+export const screen = {
+  desktop: '1024px',
+  tablet: '768px',
+  mobile: '480px'
+}
+
 export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0px;
